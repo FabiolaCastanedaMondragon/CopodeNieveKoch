@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Copo de Nieve de Koch</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Generador de Copo de Nieve de Koch</h1>
+
+        <form method="POST">
+            <label for="parte">Parte del copo:</label>
+            <select id="parte" name="parte">
+                <option value="superior" {% if parte=="superior" %}selected{% endif %}>Superior</option>
+                <option value="inferior" {% if parte=="inferior" %}selected{% endif %}>Inferior</option>
+                <option value="izquierda" {% if parte=="izquierda" %}selected{% endif %}>Izquierda</option>
+                <option value="derecha" {% if parte=="derecha" %}selected{% endif %}>Derecha</option>
+            </select>
+
+            <button type="submit">Generar</button>
+        </form>
+
+        {% if imagen %}
+        <div class="resultado">
+            <h2>Secuencia iteraciones 1 a 4 ({{ parte }})</h2>
+            <img src="data:image/png;base64,{{ imagen }}" alt="Copo de Koch">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
